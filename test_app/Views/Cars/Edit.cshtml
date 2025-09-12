@@ -1,0 +1,126 @@
+@model test_app.Models.Car
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="form-title">Оновити авто</h1>
+
+<div class="form-container">
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label asp-for="Brand" class="form-label"></label>
+            <input asp-for="Brand" class="form-control" />
+            <span asp-validation-for="Brand" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Model" class="form-label"></label>
+            <input asp-for="Model" class="form-control" />
+            <span asp-validation-for="Model" class="text-danger"></span>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="YearFrom" class="form-label"></label>
+                <input asp-for="YearFrom" class="form-control" />
+                <span asp-validation-for="YearFrom" class="text-danger"></span>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label asp-for="YearTo" class="form-label"></label>
+                <input asp-for="YearTo" class="form-control" />
+                <span asp-validation-for="YearTo" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Engine" class="form-label"></label>
+            <input asp-for="Engine" class="form-control" />
+            <span asp-validation-for="Engine" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Transmission" class="form-label"></label>
+            <input asp-for="Transmission" class="form-control" />
+            <span asp-validation-for="Transmission" class="text-danger"></span>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+            <a asp-action="Index" class="btn btn-secondary">Назад</a>
+            <input type="submit" value="Оновити" class="btn btn-primary" />
+        </div>        
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* <div class="mb-3">
+            <label asp-for="Brand" class="control-label"></label>
+            <input asp-for="Brand" class="form-control" />
+            <span asp-validation-for="Brand" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Model" class="control-label"></label>
+            <input asp-for="Model" class="form-control" />
+            <span asp-validation-for="Model" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="YearFrom" class="control-label"></label>
+            <input asp-for="YearFrom" class="form-control" />
+            <span asp-validation-for="YearFrom" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="YearTo" class="control-label"></label>
+            <input asp-for="YearTo" class="form-control" />
+            <span asp-validation-for="YearTo" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Engine" class="control-label"></label>
+            <input asp-for="Engine" class="form-control" />
+            <span asp-validation-for="Engine" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Transmission" class="control-label"></label>
+            <input asp-for="Transmission" class="form-control" />
+            <span asp-validation-for="Transmission" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div> *@
+
+@* <div>
+    <a asp-action="Index">Back to List</a>
+</div> *@

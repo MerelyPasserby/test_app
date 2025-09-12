@@ -1,0 +1,103 @@
+﻿@model test_app.ViewModels.TaskCostCalculatorViewModel
+
+<h2>Калькулятор вартості завдання</h2>
+
+<form asp-action="SelectParts" method="post" class="mb-4 border rounded p-3 shadow-sm">
+    <div class="mb-3">
+        <label asp-for="SelectedCarId" class="form-label">Оберіть авто:</label>
+        <select asp-for="SelectedCarId" asp-items="Model.AvailableCars" class="form-select">
+            <option value="">-- Виберіть авто --</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Підібрати деталі</button>
+</form>
+
+@if (Model.CompatibleParts != null && Model.AvailableTaskTypes != null)
+{    
+    <form asp-action="Calculate" method="post" class="border rounded p-3 shadow-sm">
+
+        <input type="hidden" asp-for="SelectedCarId" />
+
+        <h4 class="mb-3">Обрані деталі та робота</h4>
+        
+        <div class="row align-items-end mb-3">
+            <div class="col-md-5">
+                <label asp-for="Part1Id" class="form-label">Деталь 1:</label>
+                <select asp-for="Part1Id" asp-items="Model.CompatibleParts" class="form-select">
+                    <option value="">-- Не вибрано --</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label asp-for="Part1Quantity" class="form-label">Кількість:</label>
+                <input asp-for="Part1Quantity" class="form-control" type="number" min="0" />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Вартість:</label>
+                <input type="text" readonly class="form-control bg-light"
+                       value="@(Model.Part1Cost?.ToString("0.00") ?? "—")" />
+            </div>
+        </div>
+       
+        <div class="row align-items-end mb-3">
+            <div class="col-md-5">
+                <label asp-for="Part2Id" class="form-label">Деталь 2:</label>
+                <select asp-for="Part2Id" asp-items="Model.CompatibleParts" class="form-select">
+                    <option value="">-- Не вибрано --</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label asp-for="Part2Quantity" class="form-label">Кількість:</label>
+                <input asp-for="Part2Quantity" class="form-control" type="number" min="0" />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Вартість:</label>
+                <input type="text" readonly class="form-control bg-light"
+                       value="@(Model.Part2Cost?.ToString("0.00") ?? "—")" />
+            </div>
+        </div>
+        
+        <div class="row align-items-end mb-3">
+            <div class="col-md-5">
+                <label asp-for="Part3Id" class="form-label">Деталь 3:</label>
+                <select asp-for="Part3Id" asp-items="Model.CompatibleParts" class="form-select">
+                    <option value="">-- Не вибрано --</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label asp-for="Part3Quantity" class="form-label">Кількість:</label>
+                <input asp-for="Part3Quantity" class="form-control" type="number" min="0" />
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Вартість:</label>
+                <input type="text" readonly class="form-control bg-light"
+                       value="@(Model.Part3Cost?.ToString("0.00") ?? "—")" />
+            </div>
+        </div>
+
+
+        <div class="row align-items-end mb-3">
+            <div class="col-md-6">
+                <label asp-for="SelectedTaskTypeId" class="form-label">Тип роботи:</label>
+                <select asp-for="SelectedTaskTypeId" asp-items="Model.AvailableTaskTypes" class="form-select">
+                    <option value="">-- Не вибрано --</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Вартість роботи:</label>
+                <input type="text" readonly class="form-control bg-light"
+                       value="@(Model.TaskCost?.ToString("0.00") ?? "—")" />
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="mb-3">
+            <label class="form-label"><strong>Загальна вартість:</strong></label>
+            <input type="text" readonly class="form-control bg-light fs-5"
+                   value="@(Model.TotalCost?.ToString("0.00") ?? "—")" />
+        </div>
+
+        <button type="submit" class="btn btn-success">Розрахувати</button>
+    </form>
+}
+

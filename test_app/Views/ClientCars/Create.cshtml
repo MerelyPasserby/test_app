@@ -1,0 +1,112 @@
+@model test_app.Models.ClientCar
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="form-title">Додати Клієнтське Авто</h1>
+
+<div class="form-container">
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+        <div class="mb-3">
+            <label asp-for="ClientId" class="form-label"></label>
+            <select asp-for="ClientId" class="form-control" asp-items="@ViewData["ClientId"] as SelectList"></select>
+            <span asp-validation-for="ClientId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="CarId" class="form-label"></label>
+            <select asp-for="CarId" class="form-control" asp-items="@ViewData["CarId"] as SelectList"></select>
+            <span asp-validation-for="CarId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Vin" class="form-label"></label>
+            <input asp-for="Vin" class="form-control" />
+            <span asp-validation-for="Vin" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="RegistrationNum" class="form-label"></label>
+            <input asp-for="RegistrationNum" class="form-control" />
+            <span asp-validation-for="RegistrationNum" class="text-danger"></span>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+            <a asp-action="Index" class="btn btn-secondary">Назад</a>
+            <input type="submit" value="Створити" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* <h1>Create</h1>
+
+<h4>ClientCar</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ClientId" class="control-label"></label>
+                <select asp-for="ClientId" class="form-control" asp-items="@ViewData["ClientId"] as SelectList"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarId" class="control-label"></label>
+                <select asp-for="CarId" class="form-control" asp-items="@ViewData["CarId"] as SelectList"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Vin" class="control-label"></label>
+                <input asp-for="Vin" class="form-control" />
+                <span asp-validation-for="Vin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegistrationNum" class="control-label"></label>
+                <input asp-for="RegistrationNum" class="form-control" />
+                <span asp-validation-for="RegistrationNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div> *@
+
+@* @if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var modelError in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@modelError.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+} *@
+
+
+

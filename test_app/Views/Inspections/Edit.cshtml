@@ -1,0 +1,117 @@
+@model test_app.Models.Inspection
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="form-title">Редагувати огляд</h1>
+
+<div class="form-container">
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="Cost" />
+
+        <div class="mb-3">
+            <label asp-for="ClientCarId" class="form-label"></label>
+            <select asp-for="ClientCarId" class="form-control" asp-items="@ViewData["ClientCarId"] as SelectList"></select>
+            <span asp-validation-for="ClientCarId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="InspectionDate" class="form-label"></label>
+            <input asp-for="InspectionDate" class="form-control" />
+            <span asp-validation-for="InspectionDate" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Results" class="form-label"></label>
+            <input asp-for="Results" class="form-control" />
+            <span asp-validation-for="Results" class="text-danger"></span>
+        </div>
+
+        <div class="form-check mb-3">
+            <input class="form-check-input" asp-for="IsPaid" />
+            <label class="form-check-label" asp-for="IsPaid"></label>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+            <a asp-action="Index" class="btn btn-secondary">Назад</a>
+            <input type="submit" value="Зберегти" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* <h1>Edit</h1>
+
+<h4>Inspection</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="Cost" />
+            <div class="form-group">
+                <label asp-for="ClientCarId" class="control-label"></label>
+                <select asp-for="ClientCarId" class="form-control" asp-items="@ViewData["ClientCarId"] as SelectList"></select>
+                <span asp-validation-for="ClientCarId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InspectionDate" class="control-label"></label>
+                <input asp-for="InspectionDate" class="form-control" />
+                <span asp-validation-for="InspectionDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Results" class="control-label"></label>
+                <input asp-for="Results" class="form-control" />
+                <span asp-validation-for="Results" class="text-danger"></span>
+            </div>            
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsPaid" /> @Html.DisplayNameFor(model => model.IsPaid)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div> *@
+
+

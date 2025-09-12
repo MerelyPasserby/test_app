@@ -1,0 +1,70 @@
+@model test_app.Models.TaskType
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="mb-4">Деталі типу завдання</h1>
+
+<div class="card shadow-sm border-0">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Name)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Name)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.NormTime)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.NormTime)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.LaborCost)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.LaborCost)</dd>
+        </dl>
+
+        <div class="d-flex justify-content-between mt-4">
+            <a asp-action="Index" class="btn btn-secondary">Back</a>
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* <h1>Details</h1>
+
+<div>
+    <h4>TaskType</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NormTime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NormTime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LaborCost)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LaborCost)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div> *@

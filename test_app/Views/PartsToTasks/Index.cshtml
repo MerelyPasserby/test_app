@@ -1,0 +1,132 @@
+@model test_app.ViewModels.PartsToTaskViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="mb-4">Деталі на завданнях</h1>
+
+<form method="get" class="mb-4 row g-2">
+    <div class="col-md-4">
+        <input asp-for="SearchPartName" class="form-control" placeholder="Пошук за назвою деталі" />
+    </div>
+    <div class="col-md-4">
+        <input asp-for="SearchCar" class="form-control" placeholder="Пошук за авто клієнта" />
+    </div>
+    <div class="col-md-3">
+        <select asp-for="DateRange" class="form-select" asp-items="Model.AvailableDateRanges">
+            <option value="">Всі дати</option>
+        </select>
+    </div>
+    <div class="col-md-3">
+        <select asp-for="SortOrder" class="form-select" asp-items="Model.AvailableSortOrders">
+            <option value="">Без сортування</option>
+        </select>
+    </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Застосувати</button>
+        <a asp-action="Index" class="btn btn-secondary ms-2">Скинути</a>
+    </div>
+</form>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">+ Додати запис</a>
+</p>
+
+<table class="table table-striped table-hover shadow-sm">
+    <thead class="table-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(_ => Model.PartsToTasks.First().PartId)</th>
+            <th>@Html.DisplayNameFor(_ => Model.PartsToTasks.First().TaskId)</th>
+            <th>@Html.DisplayNameFor(_ => Model.PartsToTasks.First().Quantity)</th>
+            <th>@Html.DisplayNameFor(_ => Model.PartsToTasks.First().PriceAtUse)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PartsToTasks)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Part.DisplayName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Task.DisplayName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                <td>@Html.DisplayFor(modelItem => item.PriceAtUse)</td>
+                <td>
+                    <div class="btn-group btn-group-sm" role="group">
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-secondary">Деталі</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">Видалити</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* <h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PartId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PriceAtUse)
+            </th>            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Part.DisplayName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Task.DisplayName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PriceAtUse)
+            </td>            
+            <td>                
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table> *@

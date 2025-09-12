@@ -1,0 +1,86 @@
+@model test_app.Models.ClientCar
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="mb-4">Деталі авто клієнта</h1>
+
+<div class="card shadow-sm border-0">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Vin)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Vin)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.RegistrationNum)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.RegistrationNum)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.CarId)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Car.DisplayName)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.ClientId)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Client.DisplayName)</dd>
+        </dl>
+
+        <div class="d-flex justify-content-between mt-4">
+            <a asp-action="Index" class="btn btn-secondary">Back</a>
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* <h1>Details</h1>
+
+<div>
+    <h4>ClientCar</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Vin)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Vin)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RegistrationNum)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RegistrationNum)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CarId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Car.DisplayName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ClientId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Client.DisplayName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div> *@

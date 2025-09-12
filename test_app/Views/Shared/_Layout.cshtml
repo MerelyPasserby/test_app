@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - test_app</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/test_app.styles.css" asp-append-version="true" />
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
+        <div class="container">
+            
+            <a class="navbar-brand" asp-controller="Tasks" asp-action="Index">Головна</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto">
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="autoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Авто
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="autoDropdown">
+                            <li><a class="dropdown-item" asp-controller="Cars" asp-action="Index">Авто</a></li>
+                            <li><a class="dropdown-item" asp-controller="Clients" asp-action="Index">Кліенти</a></li>
+                            <li><a class="dropdown-item" asp-controller="ClientCars" asp-action="Index">Клієнтські авто</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="tasksDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Задачі
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="tasksDropdown">
+                            <li><a class="dropdown-item" asp-controller="Inspections" asp-action="Index">Огляди</a></li>
+                            <li><a class="dropdown-item" asp-controller="Tasks" asp-action="Index">Завдання</a></li>
+                            <li><a class="dropdown-item" asp-controller="PartsToTasks" asp-action="Index">Деталі на завдання</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Parts" asp-action="Index">Склад</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="TaskCostCalculator" asp-action="Index">Калькулятор</a>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="guideDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Довідник
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="guideDropdown">
+                            <li><a class="dropdown-item" asp-controller="Suppliers" asp-action="Index">Постачальники</a></li>
+                            <li><a class="dropdown-item" asp-controller="PartCompatibilities" asp-action="Index">Сумісність деталей</a></li>
+                            <li><a class="dropdown-item" asp-controller="TaskTypes" asp-action="Index">Типи Завдань</a></li>
+                            <li><a class="dropdown-item" asp-controller="PartSuppliers" asp-action="Index">Постачальники деталей</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mb-4 pb-5 flex-grow-1">
+        @RenderBody()
+    </main>
+
+    <footer class="footer bg-light text-center text-muted p-3 mt-auto">
+        <small>&copy; 2025 Автомайстерня. Всі права захищені.</small>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* <header class="bg-dark text-white p-3 mb-4">
+        <div class="container">
+            <h1 class="m-0">
+                <a asp-controller="Home" asp-action="Index" class="text-white text-decoration-none">Автомастерская</a>
+            </h1>
+        </div>
+    </header> *@
+
+@* <nav class="navbar navbar-expand-sm navbar-light bg-light mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">Главная</a>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <!-- Выпадающее меню -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            Задачи
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/Task/Index">Список задач</a></li>
+                            <li><a class="dropdown-item" href="/Task/Create">Создать задачу</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/Task/History">История</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="navbar-nav">
+                <a class="nav-link" asp-controller="Clients" asp-action="Index">Клиенты</a>
+                <a class="nav-link" asp-controller="Cars" asp-action="Index">Авто</a>
+                <a class="nav-link" asp-controller="Tasks" asp-action="Index">Задачи</a>
+                <a class="nav-link" asp-controller="Inspections" asp-action="Index">Осмотры</a>
+                <a class="nav-link" asp-controller="Suppliers" asp-action="Index">Поставщики</a>
+            </div>
+        </div>
+    </nav> *@
+
+@* <header class="bg-dark text-white p-3 mb-4">
+        <div class="container">
+            <h1>Автомастерская</h1>
+        </div>
+    </header>
+
+
+    <nav class="navbar navbar-expand-sm navbar-light bg-light mb-4">
+        <div class="container">
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav me-auto">
+
+                    <!-- Выпадающее меню Задачи -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            Задачи
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" asp-controller="Tasks" asp-action="Index">Список задач</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" asp-controller="Tasks" asp-action="Create">Создать задачу</a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" asp-controller="Tasks" asp-action="History">История</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Остальные пункты -->
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Clients" asp-action="Index">Клиенты</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Cars" asp-action="Index">Авто</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Inspections" asp-action="Index">Осмотры</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Suppliers" asp-action="Index">Поставщики</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav> *@
+
+@* @if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var modelError in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@modelError.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+} *@
