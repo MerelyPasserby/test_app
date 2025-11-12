@@ -14,7 +14,7 @@ public partial class User
     [Column("email")]
     [Display(Name = "Пошта")]
     [Required(ErrorMessage = "Введіть пошту")]
-    [EmailAddress]
+    [RegularExpression(@"^(?i)[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$", ErrorMessage = "Введіть існуючу пошту")]
     [StringLength(50)]
     public string Email { get; set; } = null!;
 

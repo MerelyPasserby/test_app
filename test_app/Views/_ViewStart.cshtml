@@ -1,6 +1,6 @@
 ﻿@{
     var path = Context.Request.Path;
-    if (!path.StartsWithSegments("/Users"))
+    if (path.StartsWithSegments("/Users") || path.StartsWithSegments("/"))
     {
         Layout = "_LoginLayout";            
     }

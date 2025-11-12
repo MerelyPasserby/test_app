@@ -1,6 +1,6 @@
 ﻿@model test_app.Models.User
 
-@{
+@{       
     ViewData["Title"] = "Register";
 }
 
@@ -17,7 +17,12 @@
 
         <div class="mb-3">
             <label asp-for="Password" class="form-label"></label>
-            <input asp-for="Password" class="form-control" />
+            <div class="input-group">
+                <input asp-for="Password" class="form-control" id="PasswordInput" />
+                <select class="form-select" id="AlphabetSelect" asp-items="@(ViewData["Alphabets"] as List<SelectListItem>)" style="max-width: 150px;">
+                </select>
+                <button type="button" class="btn btn-outline-primary" id="GenerateBtn">Згенерувати</button>
+            </div>
             <span asp-validation-for="Password" class="text-danger"></span>
         </div>
 
@@ -36,4 +41,16 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script>
+        document.getElementById("GenerateBtn").addEventListener("click", function () {
+            const alphabetChoice = document.getElementById("AlphabetSelect").value;
+
+            fetch(`/Users/GeneratePassword?alphabetChoice=${alphabetChoice}`)
+                .then(response => response.text())
+                .then(password => {
+                    document.getElementById("PasswordInput").value = password;
+                })
+                .catch(err => console.error("Generation error:", err));
+        });        
+    </script>
 }
