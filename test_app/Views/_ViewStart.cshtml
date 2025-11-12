@@ -1,3 +1,11 @@
 ﻿@{
-    Layout = "_Layout";
+    var path = Context.Request.Path;
+    if (!path.StartsWithSegments("/Users"))
+    {
+        Layout = "_LoginLayout";            
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
 }

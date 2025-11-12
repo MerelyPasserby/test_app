@@ -1,0 +1,40 @@
+﻿@model test_app.Models.User
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="form-container">
+    <h1 class="form-title">Авторизація</h1>
+    <form asp-action="Login">
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Password" class="form-label"></label>
+            <input asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+            <a asp-action="Register" class="btn btn-secondary">До реєстрації</a>
+            <input type="submit" value="Увійти" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

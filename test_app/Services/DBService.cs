@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol.Plugins;
 using test_app.Models;
 
 namespace test_app.Services
@@ -11,6 +12,22 @@ namespace test_app.Services
         {
             _context = context;
         }
+
+        //USERS
+
+        public async System.Threading.Tasks.Task AddUserAsync(User user)
+        {
+            _context.Users.Add(user);   
+            await _context.SaveChangesAsync();
+        }
+        public bool CheckUser(string email)
+        {
+            return _context.Users.Any(u => u.Email == email);
+        }
+        public async Task<User?> GetUserByEmailAsync(string email)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+        }        
 
         // CARS
 
