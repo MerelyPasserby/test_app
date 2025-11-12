@@ -281,12 +281,14 @@ public partial class AutoWorkshopContext : DbContext
         modelBuilder.Entity<User>(entity =>
         {
             entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Attempts).HasColumnName("attempts");
             entity.Property(e => e.Email)
                 .HasMaxLength(50)
                 .HasColumnName("email");
             entity.Property(e => e.Password)
                 .HasMaxLength(255)
                 .HasColumnName("password");
+            entity.Property(e => e.TimeLocked).HasColumnName("time_locked");
         });
 
         OnModelCreatingPartial(modelBuilder);

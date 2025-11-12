@@ -23,4 +23,8 @@ public partial class User
     [Required(ErrorMessage = "Введіть пароль")]
     [StringLength(255)]
     public string Password { get; set; } = null!;
+
+    public int Attempts { get; set; } = 0;
+
+    public DateTime TimeLocked { get; set; } = new DateTime(2001, 1, 1);
 }

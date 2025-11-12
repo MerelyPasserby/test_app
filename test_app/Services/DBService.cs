@@ -17,7 +17,7 @@ namespace test_app.Services
 
         public async System.Threading.Tasks.Task AddUserAsync(User user)
         {
-            _context.Users.Add(user);   
+            _context.Users.Add(user);
             await _context.SaveChangesAsync();
         }
         public bool CheckUser(string email)
@@ -27,7 +27,25 @@ namespace test_app.Services
         public async Task<User?> GetUserByEmailAsync(string email)
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
-        }        
+        }
+        public async System.Threading.Tasks.Task IncreaseUserAttemptsAsync(User user)
+        {
+            user.Attempts++;
+            await _context.SaveChangesAsync();
+        }
+        public async System.Threading.Tasks.Task NullifyUserAttemptsAsync(User user)
+        {
+
+            user.Attempts = 0;
+            await _context.SaveChangesAsync();
+        }
+        public async System.Threading.Tasks.Task TimeOutUserAsync(User user, DateTime timeout)
+        {
+
+            user.TimeLocked = timeout;
+            await _context.SaveChangesAsync();
+        }
+
 
         // CARS
 
@@ -37,7 +55,7 @@ namespace test_app.Services
         }
 
         public async Task<Car?> GetCarByIdAsync(int id)
-        {            
+        {
             return await _context.Cars.FirstOrDefaultAsync(c => c.Id == id);
         }
 
@@ -464,7 +482,7 @@ namespace test_app.Services
             using var transaction = await _context.Database.BeginTransactionAsync();
 
             try
-            {                
+            {
                 var task = await _context.Tasks.FindAsync(id);
                 if (task == null)
                     return;
@@ -472,9 +490,9 @@ namespace test_app.Services
                 var partsToTasks = await _context.PartsToTasks
                     .Where(p => p.TaskId == id)
                     .ToListAsync();
-                
+
                 _context.PartsToTasks.RemoveRange(partsToTasks);
-                
+
                 _context.Tasks.Remove(task);
 
                 await _context.SaveChangesAsync();
@@ -567,7 +585,7 @@ namespace test_app.Services
                 await transaction.RollbackAsync();
                 throw;
             }
-        }              
+        }
 
         public async Task<PartsToTask?> GetPartToTaskAsync(int id)
         {

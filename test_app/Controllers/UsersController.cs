@@ -39,19 +39,36 @@ namespace test_app.Controllers
             else
             {
                 var dbUser = await _db.GetUserByEmailAsync(user.Email);
+
                 if(dbUser == null)
                 {
                     ModelState.AddModelError("", "Wrong email");
                     return View(user);
                 }
-
+                if(dbUser.TimeLocked > DateTime.Now)
+                {
+                    ModelState.AddModelError("", $"User is temporarily locked, unlocked in {dbUser.TimeLocked.Subtract(DateTime.Now)}");
+                    return View(user);
+                }
+                
                 var result = _passwordHasher.VerifyHashedPassword(null, dbUser.Password, user.Password);
 
                 if (result != PasswordVerificationResult.Success)
                 {
-                    ModelState.AddModelError("", "Wrong password");
+                    await _db.IncreaseUserAttemptsAsync(dbUser);
+                    ModelState.AddModelError("", "Wrong password");                    
+
+                    if(dbUser.Attempts == 3)
+                    {
+                        await _db.TimeOutUserAsync(dbUser, DateTime.Now.AddMinutes(5));
+                        await _db.NullifyUserAttemptsAsync(dbUser);
+                        ModelState.AddModelError("", "Reached attempt limit, try again in 5 minute");
+                    }                    
+                                       
                     return View(user);
                 }
+
+                await _db.NullifyUserAttemptsAsync(dbUser);
                 return RedirectToAction("Index", "Tasks");
             }
             
