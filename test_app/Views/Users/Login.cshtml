@@ -11,13 +11,18 @@
 
         <div class="mb-3">
             <label asp-for="Email" class="form-label"></label>
-            <input asp-for="Email" class="form-control" />
+            <input asp-for="Email" class="form-control" autocomplete="off" />
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
             <label asp-for="Password" class="form-label"></label>
-            <input asp-for="Password" class="form-control" />
+            <div class="input-group">
+                <input asp-for="Password" class="form-control" id="PasswordInput" type="password" autocomplete="off" />                
+                <button type="button" class="btn btn-outline-secondary" id="TogglePasswordBtn">
+                    <i class="bi bi-eye"></i>
+                </button>
+            </div>
             <span asp-validation-for="Password" class="text-danger"></span>
         </div>
 
@@ -37,4 +42,20 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script>
+        document.getElementById("TogglePasswordBtn").addEventListener("click", function () {
+            const input = document.getElementById("PasswordInput");
+            const icon = this.querySelector("i");
+
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.remove("bi-eye");
+                icon.classList.add("bi-eye-slash");
+            } else {
+                input.type = "password";
+                icon.classList.remove("bi-eye-slash");
+                icon.classList.add("bi-eye");
+            }
+        });
+    </script>
 }

@@ -34,7 +34,7 @@ namespace test_app.Controllers
         public async Task<IActionResult> Login(User user)
         {
             if (!ModelState.IsValid)
-            {
+            {                
                 return View(user);
             }
             else
@@ -43,12 +43,12 @@ namespace test_app.Controllers
 
                 if (dbUser == null)
                 {
-                    ModelState.AddModelError("", "Wrong email");
+                    ModelState.AddModelError("", "Wrong email");                   
                     return View(user);
                 }
                 if (dbUser.TimeLocked > DateTime.Now)
                 {
-                    ModelState.AddModelError("", $"User is temporarily locked, unlocked in {dbUser.TimeLocked.Subtract(DateTime.Now)}");
+                    ModelState.AddModelError("", $"User is temporarily locked, unlocked in {dbUser.TimeLocked.Subtract(DateTime.Now)}");                    
                     return View(user);
                 }
 
@@ -66,6 +66,8 @@ namespace test_app.Controllers
                         ModelState.AddModelError("", "Reached attempt limit, try again in 5 minute");
                     }
 
+                    user.Password = string.Empty;
+                    ModelState.Remove(nameof(user.Password));
                     return View(user);
                 }
 

@@ -35,7 +35,7 @@ namespace test_app
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Users}/{action=Login}/{id?}"); //"{controller=Tasks}/{action=Index}/{id?}"
+                pattern: "{controller=Tasks}/{action=Index}/{id?}"); //"{controller=Tasks}/{action=Index}/{id?}" {controller=Users}/{action=Login}/{id?}
 
             app.Run();
         }

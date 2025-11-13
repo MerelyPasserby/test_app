@@ -11,14 +11,14 @@
 
         <div class="mb-3">
             <label asp-for="Email" class="form-label"></label>
-            <input asp-for="Email" class="form-control" />
+            <input asp-for="Email" class="form-control" autocomplete="off" />
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
             <label asp-for="Password" class="form-label"></label>
             <div class="input-group">
-                <input asp-for="Password" class="form-control" id="PasswordInput" />
+                <input asp-for="Password" class="form-control" id="PasswordInput" autocomplete="off" readonly />
                 <select class="form-select" id="AlphabetSelect" asp-items="@(ViewData["Alphabets"] as List<SelectListItem>)" style="max-width: 150px;">
                 </select>
                 <button type="button" class="btn btn-outline-primary" id="GenerateBtn">Згенерувати</button>
